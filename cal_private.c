@@ -27,7 +27,7 @@ int main() {
     // ed = 1 mod phi
     BN_mod_inverse(d, e, phi, ctx);
 
-    printBN("private key d is ", res);
+    printBN("private key d is ", d);
 
     return 0;
 }
