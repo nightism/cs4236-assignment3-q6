@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <openssl/bn.h>
 #define NBITS 256
 
@@ -23,24 +24,24 @@ int main() {
     BN_hex2bn(&s, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6802F");
 
     // verify with e
-    BN_mod_exp(ver, s, e, m, ctx);
-    printBN("decrypted msg is: ", ver);
+    BN_mod_exp(ver, s, e, n, ctx);
+    printBN("verified msg is: ", ver);
     printBN("original msg is: ", m);
     if (strcmp(BN_bn2hex(m), BN_bn2hex(ver)) == 0)
         printf("Verfication succeeds!\n");
     else
-        printf("Verfication fails!");
+        printf("Verfication fails!\n");
 
     // signature corrupted
     printf("\nIf signature corrupted:\n");
     BN_hex2bn(&s, "643D6F34902D9C7EC90CB0B2BCA36C47FA37165C0005CAB026C0542CBDB6803F");
-    BN_mod_exp(ver, s, e, m, ctx);
-    printBN("decrypted msg is: ", ver);
+    BN_mod_exp(ver, s, e, n, ctx);
+    printBN("verified msg is: ", ver);
     printBN("original msg is: ", m);
     if (strcmp(BN_bn2hex(m), BN_bn2hex(ver)) == 0)
         printf("Verfication succeeds!\n");
     else
-        printf("Verfication fails!");
+        printf("Verfication fails!\n");
 
     return 0;
 }

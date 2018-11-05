@@ -25,7 +25,7 @@ int main() {
 
     // calculate cipher
     BN_mod_exp(c, m, e, n, ctx);
-    printBN("Ciphertext is ", c)
+    printBN("Ciphertext is ", c);
 
     // get message
     BN_mod_exp(m_dec, c, d, n, ctx);
